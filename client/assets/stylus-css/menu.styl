@@ -1,0 +1,96 @@
+// main: _main.styl, compress: true, sourcemap: false
+menu_icon_size = 30px;
+
+.menu
+  width 100vw
+  height 70px
+  padding 10px
+  margin-bottom 50px
+  border 2px solid black
+  border-style groove
+  background-color #fff
+
+.icon
+  position absolute
+  display inline-block
+  width 90px
+  height 90px
+  margin auto
+  top 2px
+  left 0
+  text-align center
+  img
+    position relative
+    top 20px
+    width 50px
+    height 50px
+.icon:hover
+  background-color blue
+
+.row
+  position absolute
+  margin-left 80px
+  width 100vw
+  height 30px
+
+// Row with context menus
+.row_1
+  top 5px
+  background-color #E3E3E3
+  div
+    display inline-block
+    margin-right 20px
+    margin-left 10px
+    width 70px
+    height 30px
+    line-height 30px
+    text-align center
+  div:hover
+    background-color white
+
+// Row with icons
+.row_2
+  top 50px
+  margin-left 100px
+
+
+.icon_box
+  position relative
+  display inline-block
+  width 150px
+  top 3px
+  img
+    width menu_icon_size - 5
+    height menu_icon_size - 5
+    margin-left 20px
+  img:hover
+    background-color blue
+
+.options_box
+  width 120px
+  height 30px
+  display inline-block
+  select
+    position relative
+    display inline-block
+    bottom 5px
+    margin-left 20px
+
+  select.paragraph_style
+      width 120px
+
+  select.font
+      width 80px
+      margin-left 40px
+
+  select.font-size
+      width 50px
+
+.separator
+  position relative
+  display inline-block
+  height 100%
+  font-size 30px
+  bottom 2px
+  margin-left 10px
+  margin-right 10px
