@@ -20,7 +20,7 @@ export default class App extends Component {
         this.setState({ saveKeyPressed: 1 });
 
         // Get the text in the textarea
-        var text = $('.doc').val();
+        var text = $('.doc').html();
 
         // Create a JSON object holding the data.
         var data = { userText: text };

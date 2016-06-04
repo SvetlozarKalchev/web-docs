@@ -22,9 +22,9 @@ export default class Doc extends Component {
   }
   render() {
     return(
-      <textarea className={this.state.css_class} contentEditable="true" data-text="test" onFocus={this.reset.bind(this)} on>
+      <div className={this.state.css_class} contentEditable="true" data-text="test" onFocus={this.reset.bind(this)} on>
         {this.state.content}
-      </textarea>
+      </div>
     );
   }
 }
