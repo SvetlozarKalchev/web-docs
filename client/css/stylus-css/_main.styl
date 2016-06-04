@@ -1,0 +1,27 @@
+// out: ../../../bundle.css, compress: true, sourcemap: false
+
+// CSS reset
+@import "normalize"
+
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,400italic');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+html, body
+  width 100vw
+  height 100vh
+  margin 0
+  padding 0
+  box-sizing border-box
+  overflow-x hidden
+  
+.container
+  position relative
+  width 100vw
+  height 100vh
+  background-color #E3E3E3
+
+// Styles for other components
+@import "menu"
+@import "app"
+@import "doc"
