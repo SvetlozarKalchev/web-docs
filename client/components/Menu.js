@@ -11,7 +11,7 @@ export default class Menu extends Component {
       <div className="menu">
 
         <div className="icon">
-          <img src="client/assets/images/menu2.png"/>
+          <img src="client/assets/images/menu3.png"/>
         </div>
 
         <div className="row row_1">
