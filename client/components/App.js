@@ -12,7 +12,7 @@ export default class App extends Component {
   }
 
   sendTextToServer() {
-    // Event fires a few times, but I only want the data sent once.
+    // Event fires a few times,   but I only want the data sent once.
     // That's why I am using a counter.
     if(this.state.saveKeyPressed == 0) {
 
@@ -44,27 +44,31 @@ export default class App extends Component {
     let selectionObject = window.getSelection();
 
     let selection_text = selectionObject.toString();
+
     // More data about the selected text can be gotten by
     // creating a Range object. It holds the start and
     // end position and allows modifying the selection.
     let selection_data = selectionObject.getRangeAt(0);
-    console.log('kur');
+
     // Collapse the range, so data can be inserted at
     // the place of the selection later. A collapsed range
     // begins and ends at the same position.
-    selection_data.collapse();
-
-    // Insert new content at the coordinates of the selected text
-    let text = document.createTextNode(selection_text);
-
-    let bold = document.createElement('strong');
-    bold.appendChild(text);
-
-    selection_data.insertNode(bold);
+    // HACK: Apparently, Range.collapse() does not work
+    // in Firefox. Inserting data at the place of the selection
+    // can be done by just removing the selection contents first
+    // and then appending the desired element.
+    // selection_data.collapse();
 
     // Remove selected text from document
     selectionObject.deleteFromDocument();
 
+    // Insert new content at the coordinates of the selected text
+    let text = document.createTextNode(selection_text);
+    let bold = document.createElement('b');
+
+    bold.appendChild(text);
+
+    selection_data.insertNode(bold);
   }
 
   getSelectedText() {
