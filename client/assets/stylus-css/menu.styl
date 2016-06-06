@@ -9,7 +9,13 @@ menu_icon_size = 30px;
   border 2px solid black
   border-style groove
   background-color #fff
+  // Grow on hover effect for the top menu icons
+  img
+    transition all .2s ease-in-out
+  img:hover
+    transform scale(1.2)
 
+// Menu icon styles
 .icon
   position absolute
   display inline-block
@@ -24,19 +30,20 @@ menu_icon_size = 30px;
     top 25px
     width 40px
     height 40px
-.icon:hover
-  background-color blue
 
+// Styles for both menu rows
 .row
   position absolute
   margin-left 80px
   width 100vw
   height 30px
 
+
 // Row with context menus
 .row_1
-  top 5px
-  background-color #E3E3E3
+  top 2px
+  background-color ms_office_blue
+  color white
   div
     display inline-block
     margin-right 20px
@@ -47,13 +54,13 @@ menu_icon_size = 30px;
     text-align center
   div:hover
     background-color white
-
-// Row with icons
+    color black
+// Row with function icons
 .row_2
   top 50px
   margin-left 100px
 
-
+// Container that holds each group of icons
 .icon_box
   position relative
   display inline-block
@@ -63,8 +70,6 @@ menu_icon_size = 30px;
     width menu_icon_size - 5
     height menu_icon_size - 5
     margin-left 20px
-  img:hover
-    background-color blue
 
 .options_box
   width 120px
@@ -86,6 +91,7 @@ menu_icon_size = 30px;
   select.font-size
       width 50px
 
+// The vertical black dash used to separate groups of icons
 .separator
   position relative
   display inline-block
@@ -94,3 +100,10 @@ menu_icon_size = 30px;
   bottom 2px
   margin-left 10px
   margin-right 10px
+
+// Styles for the bold, italicize, and underline icons
+.text_style_icons
+  top -1px
+  img
+    width menu_icon_size - 10px
+    height menu_icon_size - 10px

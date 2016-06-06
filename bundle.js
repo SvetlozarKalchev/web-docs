@@ -67,7 +67,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_react2.default.render(_react2.default.createElement(_App2.default, null), document.getElementsByTagName('body')[0]);
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementsByClassName('container')[0]);
 
 /***/ },
 /* 2 */
@@ -20371,6 +20371,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _Menu = __webpack_require__(256);
+
+	var _Menu2 = _interopRequireDefault(_Menu);
+
+	var _Doc = __webpack_require__(257);
+
+	var _Doc2 = _interopRequireDefault(_Doc);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var App = function (_Component) {
@@ -20378,16 +20386,52 @@
 
 	  function App(props) {
 	    (0, _classCallCheck3.default)(this, App);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(App).call(this, props));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(App).call(this, props));
+
+	    _this.state = { saveKeyPressed: 0 };
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(App, [{
+	    key: 'sendTextToServer',
+	    value: function sendTextToServer() {
+	      var _this2 = this;
+
+	      // Event fires a few times, but I only want the data sent once.
+	      // That's why I am using a counter.
+	      if (this.state.saveKeyPressed == 0) {
+
+	        // Increment the counter.
+	        this.setState({ saveKeyPressed: 1 });
+
+	        // Get the text in the textarea
+	        var text = $('.doc').html();
+
+	        // Create a JSON object holding the data.
+	        var data = { userText: text };
+
+	        // Send the ajax request and decrement the counter once a
+	        // response arrives
+	        $.ajax({
+	          type: 'POST',
+	          url: 'http://localhost:8000/save',
+	          data: data,
+	          success: function success(response) {
+	            console.log(response);
+	            _this2.setState({ saveKeyPressed: 0 });
+	          }
+	        });
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        'h2',
+	        'div',
 	        null,
-	        ' Hello '
+	        _react2.default.createElement(_Menu2.default, null),
+	        _react2.default.createElement(_Doc2.default, { saveText: this.sendTextToServer.bind(this) })
 	      );
 	    }
 	  }]);
@@ -21923,6 +21967,298 @@
 	var $export = __webpack_require__(182)
 	// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 	$export($export.S, 'Object', {create: __webpack_require__(213)});
+
+/***/ },
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(170);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(196);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(197);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(201);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(248);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Menu = function (_Component) {
+	  (0, _inherits3.default)(Menu, _Component);
+
+	  function Menu(props) {
+	    (0, _classCallCheck3.default)(this, Menu);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Menu).call(this, props));
+	  }
+
+	  (0, _createClass3.default)(Menu, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "menu" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "icon" },
+	          _react2.default.createElement("img", { src: "client/assets/images/menu3.png" })
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "row row_1" },
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            "File"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            "Home"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            "Format"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            "Insert"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            null,
+	            "Tools"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "row row_2" },
+	          _react2.default.createElement(
+	            "div",
+	            { className: "icon_box" },
+	            _react2.default.createElement("img", { src: "client/assets/images/cut.png" }),
+	            _react2.default.createElement("img", { src: "client/assets/images/copy.png" }),
+	            _react2.default.createElement("img", { src: "client/assets/images/paste.png" })
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "separator" },
+	            "|"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "options_box" },
+	            _react2.default.createElement(
+	              "select",
+	              { className: "paragraph_style" },
+	              _react2.default.createElement(
+	                "option",
+	                { value: "normal" },
+	                "Normal"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "title" },
+	                "Title"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "h1" },
+	                "Heading 1"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "h2" },
+	                "Heading 2"
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "options_box" },
+	            _react2.default.createElement(
+	              "select",
+	              { className: "font" },
+	              _react2.default.createElement(
+	                "option",
+	                { value: "arial" },
+	                "Arial"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "roboto" },
+	                "Roboto"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "open-sans" },
+	                "Open Sans"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "times-new-roman" },
+	                "Times New Roman"
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "options_box" },
+	            _react2.default.createElement(
+	              "select",
+	              { className: "font-size" },
+	              _react2.default.createElement(
+	                "option",
+	                { value: "10" },
+	                "10"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "12" },
+	                "12"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "14" },
+	                "14"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "18" },
+	                "18"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "22" },
+	                "22"
+	              ),
+	              _react2.default.createElement(
+	                "option",
+	                { value: "24" },
+	                "24"
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "separator" },
+	            "|"
+	          ),
+	          _react2.default.createElement(
+	            "div",
+	            { className: "icon_box" },
+	            _react2.default.createElement("img", { src: "client/assets/images/bold.png" }),
+	            _react2.default.createElement("img", { src: "client/assets/images/italicize.png" }),
+	            _react2.default.createElement("img", { src: "client/assets/images/underline.png" })
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return Menu;
+	}(_react.Component);
+
+	exports.default = Menu;
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _getPrototypeOf = __webpack_require__(170);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(196);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(197);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(201);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(248);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Doc = function (_Component) {
+	  (0, _inherits3.default)(Doc, _Component);
+
+	  function Doc(props) {
+	    (0, _classCallCheck3.default)(this, Doc);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Doc).call(this, props));
+
+	    _this.state = { css_class: 'doc empty', content: 'Enter your text here' };
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(Doc, [{
+	    key: 'reset',
+	    value: function reset() {
+	      var _this2 = this;
+
+	      this.setState({ content: ' ' });
+
+	      // If user pressed Ctrl+Shift+S, send the text data to the server.
+	      // This event is better than 'onkeydown', because it gets fired only once.
+	      $(document).keypress(function (keyPressEvent) {
+	        if (keyPressEvent.ctrlKey && keyPressEvent.shiftKey && keyPressEvent.keyCode == 19) {
+	          _this2.props.saveText();
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: this.state.css_class, contentEditable: 'true', 'data-text': 'test', onFocus: this.reset.bind(this), on: true },
+	        this.state.content
+	      );
+	    }
+	  }]);
+	  return Doc;
+	}(_react.Component);
+
+	exports.default = Doc;
 
 /***/ }
 /******/ ]);
