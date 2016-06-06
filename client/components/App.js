@@ -40,15 +40,16 @@ export default class App extends Component {
     }
   }
 
-  makeBold() {
-    let selectionObject = window.getSelection();
-
-    let selection_text = selectionObject.toString();
+  // Accepts either <b>, <i> or <u> strings as an argument.
+  modify_font_style(element_style) {
+    let selection_object = window.getSelection();
+    
+    let selection_text = selection_object.toString();
 
     // More data about the selected text can be gotten by
     // creating a Range object. It holds the start and
     // end position and allows modifying the selection.
-    let selection_data = selectionObject.getRangeAt(0);
+    let selection_data = selection_object.getRangeAt(0);
 
     // Collapse the range, so data can be inserted at
     // the place of the selection later. A collapsed range
@@ -60,27 +61,23 @@ export default class App extends Component {
     // selection_data.collapse();
 
     // Remove selected text from document
-    selectionObject.deleteFromDocument();
+    selection_object.deleteFromDocument();
 
-    // Insert new content at the coordinates of the selected text
-    let text = document.createTextNode(selection_text);
-    let bold = document.createElement('b');
+    // Insert the selected content surrounded by styling tags.
+    let selection_text_to_DOM_NODE = document.createTextNode(selection_text);
+    let bold = document.createElement(element_style);
 
-    bold.appendChild(text);
+    bold.appendChild(selection_text_to_DOM_NODE);
 
     selection_data.insertNode(bold);
   }
 
-  getSelectedText() {
-    let selection = window.getSelection().toString();
 
-    return selection;
-  }
 
   render() {
     return(
       <div>
-        <Menu bold={this.makeBold.bind(this)}/>
+        <Menu modify_font_style={this.modify_font_style.bind(this)}/>
         <Doc saveText={this.sendTextToServer.bind(this)}/>
       </div>
     );

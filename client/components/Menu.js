@@ -66,9 +66,9 @@ export default class Menu extends Component {
           <div className="separator">|</div>
 
           <div className="icon_box text_style_icons">
-            <img onClick={this.props.bold} src="client/assets/images/bold.png"/>
-            <img src="client/assets/images/italicize.png"/>
-            <img src="client/assets/images/underline.png"/>
+            <img onClick={() => this.props.modify_font_style('b')} src="client/assets/images/bold.png"/>
+            <img onClick={() => this.props.modify_font_style('i')} src="client/assets/images/italicize.png"/>
+            <img onClick={() => this.props.modify_font_style('u')} src="client/assets/images/underline.png"/>
           </div>
 
 
