@@ -41,10 +41,30 @@ export default class App extends Component {
   }
 
   makeBold() {
-    let selection = window.getSelection().toString();
-    
-    console.log(selection);
-    // console.log(this.getSelection);
+    let selectionObject = window.getSelection();
+
+    let selection_text = selectionObject.toString();
+    // More data about the selected text can be gotten by
+    // creating a Range object. It holds the start and
+    // end position and allows modifying the selection.
+    let selection_data = selectionObject.getRangeAt(0);
+    console.log('kur');
+    // Collapse the range, so data can be inserted at
+    // the place of the selection later. A collapsed range
+    // begins and ends at the same position.
+    selection_data.collapse();
+
+    // Insert new content at the coordinates of the selected text
+    let text = document.createTextNode(selection_text);
+
+    let bold = document.createElement('strong');
+    bold.appendChild(text);
+
+    selection_data.insertNode(bold);
+
+    // Remove selected text from document
+    selectionObject.deleteFromDocument();
+
   }
 
   getSelectedText() {
