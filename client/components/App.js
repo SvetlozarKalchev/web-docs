@@ -36,14 +36,27 @@ export default class App extends Component {
               console.log(response);
               this.setState({ saveKeyPressed: 0 })
             }
-          })
+          });
     }
+  }
+
+  makeBold() {
+    let selection = window.getSelection().toString();
+    
+    console.log(selection);
+    // console.log(this.getSelection);
+  }
+
+  getSelectedText() {
+    let selection = window.getSelection().toString();
+
+    return selection;
   }
 
   render() {
     return(
       <div>
-        <Menu/>
+        <Menu bold={this.makeBold.bind(this)}/>
         <Doc saveText={this.sendTextToServer.bind(this)}/>
       </div>
     );

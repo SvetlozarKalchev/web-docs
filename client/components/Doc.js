@@ -20,10 +20,22 @@ export default class Doc extends Component {
     });
 
   }
+
+  getSelectedText() {
+    let selection = window.getSelection().toString();
+    console.log(selection);
+  }
+
   render() {
     return(
-      <div className={this.state.css_class} contentEditable="true" data-text="test" onFocus={this.reset.bind(this)} on>
+      <div className={this.state.css_class}
+        contentEditable="true"
+        data-text="test"
+        onFocus={this.reset.bind(this)}
+      >
+
         {this.state.content}
+
       </div>
     );
   }
