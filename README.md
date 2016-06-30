@@ -2,5 +2,4 @@
 
 ### Current UI
 
-[](![docs-web](https://raw.githubusercontent.com/SvetlozarKalchev/web-docs/master/app.gif)
-)
+![docs-web](https://raw.githubusercontent.com/SvetlozarKalchev/web-docs/master/app.gif)
